@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Main from '../views/main.vue'
+import Main from '../views/home/main.vue'
 
 Vue.use(VueRouter)
 
@@ -13,10 +13,6 @@ const routes: Array<RouteConfig> = [
   {
     path: '/main',
     name: 'main',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/main.vue')
   }
 ]
 

@@ -1,0 +1,76 @@
+$colors:(
+    'primary': #52b7ff,
+    'success': #3ebf42,
+    'tip': #fa701b,
+    'danger': #ef3e3e,
+    'text1': #273037,
+    'text2': #7d95b1,
+    'btntext1': #0180f8,
+    'btntext2': #b7c0c6,
+    'line': #dfe3eb,
+    'bg': #F5F6F8,
+    'appointment1': #5c9af4,
+    'appointment2': #32b9fe,
+    'register1': #ff8000,
+    'register2': #ff952a,
+    'orange1': #fe7244,
+    'orange2': #ff9031,
+    'yellow1': #fa9532,
+    'yellow2': #fdb65b,
+    'green1': #1ec0ae,
+    'green2': #57dd92,
+    'blue1': #2786f6,
+    'blue2': #47b7f1,
+    'white': #ffffff,
+    'green':#57dd92,
+    'blue':#47b7f1,
+    'orange':#ff9031,
+    'yellow':#fdb65b,
+    'red': #FF0000,
+);
+$base-font-size: 26px;//下载插件rm 2 px。alt+s设置1rem=？px,alt+z变换
+$font-sizes: (
+        xxxs:0.4615,
+        xxs: 0.6154, //16px
+        xs: 0.7692, //18px
+        sm: 0.8462, //22px
+        md: 1, //26px
+        l: 1.0769,//28px
+        lg: 1.2308, //32px
+        xl: 1.3846, //36px
+        x2: 1.5384, //40px
+        
+);
+$flex-jc: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+);
+$flex-ai: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        stretch: stretch,
+);
+//spacing
+$spacing-types: (
+        m:margin,
+        p:padding,
+);
+$spacing-directions: (
+        t:top,
+        r:right,
+        b:bottom,
+        l:left,
+);
+$spacing-base-size: 1rem;
+$spacing-sizes: (
+        0: 0,
+        4: 0.1538,
+        10:0.3846,
+        14:0.5385,
+        24:0.9231,
+        64:2.4615,
+);

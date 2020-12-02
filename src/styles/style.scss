@@ -1,0 +1,397 @@
+@import './_variables.scss';
+
+//reset
+//s使用scss:class="name"
+* {
+  box-sizing: border-box;
+  outline   : none;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+}
+
+html {
+  font: 26px;
+}
+
+body {
+  margin                : 0;
+  padding               : 0;
+  width                 : 1024px;
+  height                : 768px;
+  position              : absolute;
+  top                   : 50%;
+  left                  : 50%;
+  transform             : translate(-50%, -50%);
+  font-family: PingFang;
+  // font-family: PingFangSC-Regular, PingFang SC;
+}
+
+[v-cloak] {
+  display: none;
+} 
+
+ul {
+  li {
+    list-style: none;
+  }
+}
+
+.float-left {
+  float: left;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-aligin {
+  text-align: center;
+}
+.single-line-ellipsis {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.main-height {
+  height: (768px - 90px - 70px);
+}
+// p {
+//   line-height: 1.5385rem;
+// }
+
+//width height
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+//   盒子布局
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-justify-items {
+  justify-items: center;
+}
+
+.flex-justify-content-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-justify-content-between {
+  justify-content: space-between;
+}
+
+.flex-justify-content {
+  justify-content: center;
+}
+
+.flex-justify-content-around {
+  justify-content: space-around;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+//颜色
+
+@each $colorKey,
+$color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+//text align
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var !important;
+  }
+}
+
+@each $sizeKey,
+$size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+@each $key,
+$value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key,
+$value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+//space
+@each $typeKey,
+$type in $spacing-types {
+
+  // .m-1
+  @each $sizeKey,
+  $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $size * $spacing-base-size;
+    }
+  }
+
+  // .mx-1 , .my-1
+  @each $sizeKey,
+  $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left : $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top   : $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+
+  // .mt-1
+  @each $directionKey,
+  $direction in $spacing-directions {
+
+    @each $sizeKey,
+    $size in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
+
+//  金额 小数点 后 字体大小 
+.after-decimal-point-num {
+  font-size: 20px !important;
+}
+
+
+.main {
+  background: map-get($colors, 'bg');
+}
+
+
+//  一般按钮 
+.common-btn {
+  width        : 82px;
+  height       : 82px;
+  line-height  : 82px;
+  text-align   : center;
+  font-size    : 26px;
+  border-radius: 100%;
+}
+
+.operation-btn {
+  color     : #FFFFFF;
+  background: rgba(82, 183, 255, 1);
+  box-shadow: 1px 2px 4px 0px rgba(82, 183, 255, 0.4);
+}
+
+.cacel-btn {
+  color     : #273037;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.11);
+}
+
+.bottom-operation-btn {
+  width: 314px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #52B7FF;
+  box-shadow: 0px 2px 6px 0px rgba(82, 183, 255, 0.5);
+  border-radius: 6px;
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+
+.h-height {
+  height: 100%;
+}
+
+// 常用阴影 
+.common-shadow-box {
+  background   : rgba(255, 255, 255, 1);
+  box-shadow   : 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+// 成功 失败提示图片大小
+.success-fail-img {
+  height: 120px;
+  width : 120px;
+}
+
+
+// 科室 样式。
+.department-class-left {
+  width     : 230px;
+  background: rgba(237, 240, 241, 1);
+}
+
+.department-class-right {
+  width       : 714px;
+  background  : #FFFFFF;
+  padding-left: 4px;
+}
+
+.department-class-and-turn-page {
+  margin: 0 13px;
+}
+
+.page-down {
+  margin-bottom: 13px;
+}
+
+.department-content {
+  padding: 0 32px;
+
+  p {
+    margin: 0;
+  }
+
+  .title {
+    color     : #273037;
+    font-size : 36px;
+    text-align: center;
+    margin    : 0;
+    padding   : 40px 0 25px 0;
+  }
+}
+
+
+// 一般列表样式
+.list-row-header {
+  background: #E4E7EB;
+  height    : 62px;
+  // border-bottom: 1px solid #CED5E3;
+  p {
+    color: #273037;
+    // font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: bold;
+  }
+}
+
+.list-row-content {
+  background: #FFFFFF;
+  height    : 80px;
+  border-bottom: 1px solid #CED5E3;
+}
+
+
+// 信息补录 键盘样式
+.identity-record-container {
+  .num-lock-container {
+    width          : 322px;
+    height         : 380px;
+    padding        : 20px 14px;
+    justify-content: center;
+    align-items    : center;
+    margin-left    : 20px;
+
+    .lock {
+      margin-left : 11px;
+      margin-right: 11px;
+    }
+  }
+}
+
+
+// 单选样式
+.radio-box {
+  display: inline-block;
+  width        : 24px;
+  height       : 24px;
+  border-radius: 16px;
+  border       : 1px solid #C9C9C9;
+  margin-left: 8px;
+  &.active {
+    background-size: 100%;
+    border: none;
+  }
+}
+.checkbox-box {
+  display: inline-block;
+  width        : 32px;
+  height       : 32px;
+  border-radius: 6px;
+  border       : 1px solid #C9C9C9;
+  &.active {
+    background-size: 100%;
+    border: none;
+  }
+}
+
+//  单行溢出加省略号
+.single-line-ellipsis {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+
+// 扫码  回车  input
+.keyup-enter-input-scan {
+  width: 0;
+  height: 0;
+  border: none;
+  position: absolute;
+}
+
+
+// element  样式
+.el-container {
+  display       : flex;
+  flex-direction: column;
+}
+
+.el-main {
+  padding: 0;
+}
