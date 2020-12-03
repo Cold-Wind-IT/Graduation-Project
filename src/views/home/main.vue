@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <v-header></v-header>
     <!-- 中部内容 -->
-    <div class="content"></div>
+    <router-view class="content" :key="$route.path"></router-view>
     <!-- 尾部 -->
     <v-footer :footerData="footer"></v-footer>
   </div>
