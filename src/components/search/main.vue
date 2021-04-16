@@ -70,6 +70,7 @@ export default {
     operation(type) {
       if (type === 2 && !this.searchVal) return;
       const obj = { searchVal: this.searchVal, type: type };
+      this.$emit("sendSearchVal", obj);
       axios
         .get("http://localhost:8081/findByQuery/" + this.searchVal)
         .then((res) => {

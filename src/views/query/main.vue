@@ -9,14 +9,103 @@
         ref="childSearch"
       ></v-search>
     </div>
+
+    <book-table :tableHeight="400" class="content">
+      <ul class="d-flex list-header">
+        <li style="width: 60px; text-align: center">序号</li>
+        <li style="width: 100px; text-align: center">图书编号</li>
+        <li style="width: 160px; text-align: center">图书名称</li>
+        <li style="width: 120px; text-align: center">图书作者</li>
+        <li style="width: 80px; text-align: center">图书价格</li>
+        <li style="width: 140px; text-align: center">图书出版社</li>
+        <li style="width: 80px; text-align: center">出版年份</li>
+        <li style="width: 90px; text-align: center">剩余图书</li>
+        <li style="width: 80px; text-align: center">操作</li>
+      </ul>
+      <ul
+        class="d-flex list-content"
+        v-for="data in datalist"
+        :key="data.idBook"
+      >
+        <li style="width: 60px; text-align: center">{{ data.idBook }}</li>
+        <li style="width: 100px" :title="data.bookCode">
+          {{
+            data.bookCode.length > 10
+              ? data.bookCode.substring(0, 8) + "..."
+              : data.bookCode
+          }}
+        </li>
+        <li style="width: 160px" :title="data.bookName">
+          {{
+            data.bookName.length > 8
+              ? data.bookName.substring(0, 7) + "..."
+              : data.bookName
+          }}
+        </li>
+        <li style="width: 120px; text-align: center" :title="data.Author">
+          {{
+            data.bookAuthor.length > 6
+              ? data.bookAuthor.substring(0, 5) + "..."
+              : data.bookAuthor
+          }}
+        </li>
+        <li style="width: 80px; text-align: right">{{ data.bookPrice }}</li>
+        <li
+          style="width: 140px; text-align: center"
+          :title="data.bookPublishName"
+        >
+          {{
+            data.bookPublishName.length > 6
+              ? data.bookPublishName.substring(0, 5) + "..."
+              : data.bookPublishName
+          }}
+        </li>
+        <li style="width: 80px; text-align: right">
+          {{ data.bookPublishYear === 0 ? "不祥" : data.bookPublishYear }}
+        </li>
+        <li style="width: 90px; text-align: center">
+          {{ data.bookBorrowed - data.bookNum }}
+        </li>
+        <li
+          style="width: 80px; text-align: center"
+          v-if="data.bookBorrowed - data.bookNum > 0"
+        >
+          <button class="have-book">借阅</button>
+        </li>
+        <li style="width: 80px; text-align: center" v-else>
+          <button class="no-book">借阅</button>
+        </li>
+      </ul>
+    </book-table>
+
+    <turn-page
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @turnPage="turnPage"
+    >
+    </turn-page>
   </div>
 </template>
 
 <script>
 import VSearch from "@/components/search/main";
+import BookTable from "../borrow/components/bookTable";
+import TurnPage from "../../components/paging/turnPage";
+import { paging } from "../../utils/paging";
 export default {
   components: {
     VSearch,
+    BookTable,
+    TurnPage,
+  },
+  data() {
+    return {
+      currentPage: 1,
+      totalPages: 1,
+      pageSize: 9,
+      allData: [],
+      datalist: null,
+    };
   },
   methods: {
     /**
@@ -24,7 +113,7 @@ export default {
      */
     selectedVal(obj) {
       this.allData = [];
-      this.data = [];
+      this.datalist = [];
       this.currentPage = 1;
       this.totalPages = 1;
       this.type = obj.type;
@@ -44,7 +133,7 @@ export default {
     // 确认查询
     sendSearchVal(obj) {
       this.allData = [];
-      this.data = [];
+      this.datalist = [];
       if (obj.type === 1) {
         this.currentPage = 1;
         this.totalPages = 1;
@@ -53,13 +142,46 @@ export default {
         this.getData(obj.searchVal);
       }
     },
+
+    getData(val) {
+      this.$http.get(this.$api + "/findByQuery/" + val).then((res) => {
+        console.log(res);
+        if (res != null) {
+          this.allData = res.data;
+          this.totalPages = Math.ceil(this.allData.length / 10);
+          this.currentPage = 1;
+          this.datalist = paging(this.pageSize, this.currentPage, this.allData);
+          this.totalPages =
+            Math.ceil(this.allData.length / this.pageSize) === 0
+              ? 1
+              : Math.ceil(this.allData.length / this.pageSize);
+        } else {
+          alert("数据获取失败");
+        }
+      });
+    },
+
+    /**
+     *
+     *  params  1 为上一页  2  为下一页
+     *
+     */
+    turnPage(params) {
+      if (params === 1) {
+        if (this.currentPage === 1) return;
+        this.$emit("turnPage", params);
+      } else {
+        if (this.currentPage === this.totalPages) return;
+        this.$emit("turnPage", params);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scope>
 .seach {
-  margin-top: 60px;
+  padding-top: 30px;
   margin-left: 90px;
 }
 </style>

@@ -5,14 +5,16 @@
       :class="[currentPage === 1 ? 'no-active' : 'active']"
       @click="turnPage(1)"
     >
-    <span :class="[currentPage === 1 ? 'no-active' : 'active']"></span>
+      <span :class="[currentPage === 1 ? 'no-active' : 'active']"></span>
     </div>
     <div
       class="page-btn next-btn"
       :class="[currentPage === totalPages ? 'no-active' : 'active']"
       @click="turnPage(2)"
     >
-    <span :class="[currentPage === totalPages ? 'no-active' : 'active']"></span>
+      <span
+        :class="[currentPage === totalPages ? 'no-active' : 'active']"
+      ></span>
     </div>
   </div>
 </template>
@@ -53,14 +55,14 @@ export default {
 
 <style lang="scss" scoped>
 .turn-pages-container {
-  position: fixed;
-  right: 31px;
-  bottom: 114px;
+  margin: 0 60px;
+  display: flex;
+  justify-content: space-between;
   // top: 50%;
   // transform: translateY(-50%);
   .page-btn {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,43 +71,41 @@ export default {
     &.prev-btn {
       span {
         display: inline-block;
-        width:0; 
-        height:0; 
-        border-left:10px solid transparent;
-        border-right:10px solid transparent;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
         border-radius: 4px;
         &.no-active {
-          border-bottom:18px solid #C5C8CA;
+          border-bottom: 18px solid #c5c8ca;
         }
         &.active {
-          border-bottom:18px solid #52B7FF;
+          border-bottom: 18px solid #52b7ff;
         }
       }
     }
     &.next-btn {
-      margin-top: 50px;
       span {
         display: inline-block;
-        width:0; 
-        height:0; 
-        border-left:10px solid transparent;
-        border-right:10px solid transparent;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
         border-radius: 4px;
         &.no-active {
-          border-top:18px solid #C5C8CA;
+          border-top: 18px solid #c5c8ca;
         }
         &.active {
-          border-top:18px solid #52B7FF;
+          border-top: 18px solid #52b7ff;
         }
       }
     }
     &.no-active {
-      border: 2px solid #C5C8CA;
+      border: 2px solid #c5c8ca;
     }
     &.active {
-      border: 2px solid #52B7FF;
+      border: 2px solid #52b7ff;
     }
   }
 }
 </style>
-
