@@ -12,7 +12,9 @@
                 ><i class="el-icon-notebook-2"></i>图书管理</template
               >
               <el-menu-item-group>
-                <el-menu-item index="1-1">图书信息</el-menu-item>
+                <el-menu-item @click="getBook" index="1-1"
+                  >图书信息</el-menu-item
+                >
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="2">
@@ -34,31 +36,53 @@
           </el-menu></el-aside
         >
         <!-- 主要内容 -->
-        <el-main
-          ><el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" width="120">
-            </el-table-column>
-            <el-table-column prop="address" label="地址">
-            </el-table-column> </el-table
-        ></el-main>
+        <el-main>
+          <table-book :bookList="bookList" v-show="book"></table-book>
+          <table-user :userList="userList" v-show="user"></table-user>
+          <table-record :recordList="recordList" v-show="record"></table-record>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
+import TableBook from "./components/tableBook";
+import TableUser from "./components/tableUser";
+import TableRecord from "./components/tableRecord";
+
 export default {
+  components: {
+    TableBook,
+    TableUser,
+    TableRecord,
+  },
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
     return {
-      tableData: Array(20).fill(item),
+      userList: null,
+      bookList: null,
+      recordList: null,
+      book: false,
+      user: false,
+      record: false,
     };
+  },
+
+  methods: {
+    getUser() {},
+    getBook() {
+      this.$http.get(this.$api + "/findAll").then((res) => {
+        console.log(res);
+        if (res.data.lenght != 0) {
+          this.bookList = res.data;
+        } else {
+          alert("数据获取失败");
+        }
+      });
+      this.book = true;
+      this.user = false;
+      this.record = false;
+    },
   },
 };
 </script>
