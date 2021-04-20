@@ -68,6 +68,7 @@ export default {
      *
      */
     operation(type) {
+      this.isKeyboard = false;
       if (type === 2 && !this.searchVal) return;
       const obj = { searchVal: this.searchVal, type: type };
       this.$emit("sendSearchVal", obj);

@@ -20,22 +20,22 @@ export default {
     return {
       btns: [
         {
-          name: "query",
-          text: "图书查询",
-          style: "btn-query bg-color-DarkOrange",
-          icon: require("../../assets/button/图书查询.png"),
-        },
-        {
           name: "borrow",
           text: "图书借阅",
-          style: "btn-borrow bg-color-LightYellow",
+          style: "btn-borrow bg-color-DarkOrange",
           icon: require("../../assets/button/图书借阅.png"),
         },
         {
           name: "return",
           text: "图书归还",
-          style: "btn-return bg-color-DoderBlue",
+          style: "btn-return bg-color-LightYellow",
           icon: require("../../assets/button/图书归还.png"),
+        },
+        {
+          name: "user",
+          text: "个人中心",
+          style: "btn-user bg-color-DoderBlue",
+          icon: require("../../assets/button/用户.png"),
         },
         {
           name: "navigation",
@@ -67,7 +67,7 @@ export default {
     font-size: 26px;
     color: #ffffff;
   }
-  .btn-query {
+  .btn-borrow {
     width: 198px;
     height: 370px;
     border-radius: 10px;
@@ -77,7 +77,7 @@ export default {
       height: 120px;
     }
   }
-  .btn-borrow {
+  .btn-return {
     height: 183px;
     width: 410px;
     border-radius: 10px;
@@ -88,7 +88,7 @@ export default {
       height: 96px;
     }
   }
-  .btn-return {
+  .btn-user {
     position: absolute;
     top: 338px;
     left: 293px;

@@ -61,6 +61,14 @@ export default {
 
 <style lang="scss" scope>
 .main {
+  margin: 0;
+  padding: 0;
+  width: 1024px;
+  height: 768px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 1024px !important;
   height: 768px !important;
   .content {

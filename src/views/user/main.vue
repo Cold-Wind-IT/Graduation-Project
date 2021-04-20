@@ -42,7 +42,7 @@
               : data.bookName
           }}
         </li>
-        <li style="width: 120px; text-align: center" :title="data.Author">
+        <li style="width: 120px; text-align: center" :title="data.bookAuthor">
           {{
             data.bookAuthor.length > 6
               ? data.bookAuthor.substring(0, 5) + "..."
@@ -146,7 +146,7 @@ export default {
     getData(val) {
       this.$http.get(this.$api + "/findByQuery/" + val).then((res) => {
         console.log(res);
-        if (res != null) {
+        if (res.data.length != 0) {
           this.allData = res.data;
           this.totalPages = Math.ceil(this.allData.length / 10);
           this.currentPage = 1;
@@ -156,23 +156,22 @@ export default {
               ? 1
               : Math.ceil(this.allData.length / this.pageSize);
         } else {
-          alert("数据获取失败");
+          alert("未找到该图书");
         }
       });
     },
 
     /**
-     *
-     *  params  1 为上一页  2  为下一页
+     * params  1 为上一页  2  为下一页
      *
      */
     turnPage(params) {
       if (params === 1) {
-        if (this.currentPage === 1) return;
-        this.$emit("turnPage", params);
+        this.currentPage--;
+        this.datalist = paging(this.pageSize, this.currentPage, this.allData);
       } else {
-        if (this.currentPage === this.totalPages) return;
-        this.$emit("turnPage", params);
+        this.currentPage++;
+        this.datalist = paging(this.pageSize, this.currentPage, this.allData);
       }
     },
   },

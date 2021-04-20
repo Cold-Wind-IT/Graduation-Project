@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Main from '../views/home/main.vue'
 import Home from '../views/index/main.vue'
-import Query from '../views/query/main.vue'
+import User from '../views/user/main.vue'
 import Borrow from '../views/borrow/main.vue'
 import Retuen from '../views/return/main.vue'
 import Navigation from '../views/navigation/main.vue'
+import Admin from '@/views/admin/main.vue'
 
 Vue.use(VueRouter)
 
@@ -22,9 +23,9 @@ const routes: Array<RouteConfig> = [
         component:Home
       },
       {
-        path: '/query',
-        name: 'query',
-        component: Query
+        path: '/user',
+        name: 'user',
+        component: User
       },
       {
         path: '/borrow',
@@ -44,9 +45,10 @@ const routes: Array<RouteConfig> = [
     ]
   },
   {
-    path: '/main',
-    name: 'main',
-  },
+    path: '/admin',
+    name: 'admin',
+    component: Admin
+  }
   
 ]
 
