@@ -22,7 +22,7 @@
                 ><i class="el-icon-user"></i>用户管理</template
               >
               <el-menu-item-group>
-                <el-menu-item index="2-1">用户信息</el-menu-item>
+                <el-menu-item  @click="getUser" index="2-1">用户信息</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
             <el-submenu index="3">
@@ -30,7 +30,7 @@
                 ><i class="el-icon-tickets"></i>日志管理</template
               >
               <el-menu-item-group>
-                <el-menu-item index="3-1">日志信息</el-menu-item>
+                <el-menu-item @click="getRecord" index="3-1">日志信息</el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu></el-aside
@@ -50,6 +50,7 @@
 import TableBook from "./components/tableBook";
 import TableUser from "./components/tableUser";
 import TableRecord from "./components/tableRecord";
+// import bookjs from "../../assets/book";
 
 export default {
   components: {
@@ -65,24 +66,26 @@ export default {
       book: false,
       user: false,
       record: false,
+      // data:bookjs
     };
   },
 
   methods: {
-    getUser() {},
+    getUser() {
+      this.book = false;
+      this.user = true;
+      this.record = false;
+    },
     getBook() {
-      this.$http.get(this.$api + "/findAll").then((res) => {
-        console.log(res);
-        if (res.data.lenght != 0) {
-          this.bookList = res.data;
-        } else {
-          alert("数据获取失败");
-        }
-      });
       this.book = true;
       this.user = false;
       this.record = false;
     },
+    getRecord(){
+      this.book = false;
+      this.user = false;
+      this.record = true;
+    }
   },
 };
 </script>
